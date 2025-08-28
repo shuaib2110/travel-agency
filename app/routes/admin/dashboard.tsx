@@ -1,8 +1,16 @@
+import Header from "components/Header"
 
-const dashboard = () => {
+// It's a convention to name React components with PascalCase (Dashboard)
+const Dashboard = () => {
   return (
-    <div className="w-full h-screen bg-amber-950 text-amber-50">dashboard page</div>
+    <div className="dashboard wrapper">
+      {/* Pass the required props here */}
+      <Header
+        title="Welcome to the Dashboard"
+        description="Here's a summary of your recent activity."
+      />
+    </div>
   )
 }
 
-export default dashboard
+export default Dashboard
