@@ -1,12 +1,8 @@
-import { StatsCard, TripCard } from "components";
-import Header from "components/Header";
-
-
+import { Header, StatsCard, TripCard } from "../../../components";
+import { dashboardStats, user, allTrips } from "../../constants";
+const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = dashboardStats;
 
 const Dashboard = () => {
-
-  const { totalUsers, userJoined, totalTrips, tripsCreated, userRole } =
-    dashboardStats;
   return (
     <main className="dashboard wrapper">
       {/* Pass the required props here */}
@@ -19,8 +15,8 @@ const Dashboard = () => {
           <StatsCard
             headerTitle="Total Users"
             total={totalUsers}
-            currentMonthCount={userJoined.currentMonth}
-            lastMonthCount={userJoined.lastMonth}
+            currentMonthCount={usersJoined.currentMonth}
+            lastMonthCount={usersJoined.lastMonth}
           />
           <StatsCard
             headerTitle="Total Trips"
@@ -36,7 +32,27 @@ const Dashboard = () => {
           />
         </div>
       </section>
-      <TripCard />
+      <section className="container">
+        <h1 className="text-xl font-semibold text-dark-100  ">
+          created Trips
+
+        </h1>
+        <div className="trip-grid">
+          {allTrips.slice(0, 4).map((trip) => (
+
+            <TripCard
+              key={trip.id}
+              id={trip.id.toString()}
+              name={trip.name!}
+              imageUrl={trip.imageUrls[0]}
+              location={trip.itinerary?.[0]?.location ?? ''}
+              tags={[trip.tags![0], trip.travelStyle!]}
+              price={trip.estimatedPrice!}
+            />
+          ))}
+        </div>
+      </section>
+      {/* <TripCard /> */}
     </main>
   );
 };
